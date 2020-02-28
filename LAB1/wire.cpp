@@ -99,7 +99,7 @@ bool QuantumWire::operator()(const QuantumWire &tmp1, const QuantumWire &tmp2) {
 
 // operator przypisania kopiującego
 QuantumWire & QuantumWire::operator=(const QuantumWire &tmp) {
-        if(this ==&tmp){
+        if(this == &tmp){
         return *this;
     }
     delete [] particles;
@@ -118,6 +118,6 @@ QuantumWire & QuantumWire::operator=(QuantumWire &&tmp) {
     _size = std::exchange(tmp._size, 0);
     delete [] particles;
     particles = std::move(tmp.particles);
-    tmp.particles=nullptr;
+    tmp.particles = nullptr;
     return *this;
 }
