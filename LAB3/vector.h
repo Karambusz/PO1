@@ -15,6 +15,7 @@ public:
 	vector(); //konstruktor domyslny, poniewaz korzystamy z niego w main.cpp(110) 
 	vector(int size);
 	vector(const vector &);
+	vector(vector &&);
 	~vector();
 	int &operator[](int i) const; 
 	friend std::ostream &operator<<(std::ostream &, const vector &);
@@ -22,6 +23,7 @@ public:
 	void push_back(int a);
 	void pop_back();
 	vector &operator=(const vector &);
+	vector &operator=(vector &&);
 	friend vector operator+(const vector &, const vector &); // operator dodawania 2 wektorow
 	
 	
