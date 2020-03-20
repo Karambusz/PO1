@@ -73,6 +73,18 @@ vector::~vector() {
 		delete [] tab;
 }
 
+vector::vector(vector &&tmp):tab(std::exchange(tmp.tab, nullptr)), _size(std::exchange(tmp._size, 0)) {}
+
+vector & vector::operator=(vector &&tmp) {
+    if(this ==&tmp){
+        return *this;
+    }
+    delete [] tab;
+    _size = std::exchange(tmp._size, 0);
+	tab = std::exchange(tmp.tab, nullptr);
+    return *this;
+}
+
 
 vector operator+(const vector &v1, const vector &v2) {
 	
