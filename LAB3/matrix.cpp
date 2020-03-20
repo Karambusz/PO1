@@ -57,9 +57,7 @@ vector & matrix::operator[](int i) const{
 //metoda wypelniajaca macierz przy pomocy tablicy vector[],
 void matrix::fill(vector *arr, const int y) {
     for(int i = 0; i < y; i++) {
-        for(int j = 0; j < arr[i].size(); j++) {
-            macierz[i]->operator[](j) = arr[i].operator[](j);
-        } // korzystam z operatora [] klasy vector, aby odniesc sie do okreslonego elementu i nadac mu wartosc
+        macierz[i][0] = arr[i]; // korzystam z operatora [] klasy matrix, aby odniesc sie do okreslonego wiersza i nadac mu wartosc
     }
 }
                // macierz, ktora dodaje   wierzy    kolumny 
