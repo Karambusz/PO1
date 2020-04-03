@@ -17,16 +17,18 @@ public:
         return animalName;
     }
     
-    CoronaVirus(CoronaVirus &tmp):Virus(tmp){}
-    CoronaVirus(CoronaVirus &&tmp):Virus(std::move(tmp)){}
+    CoronaVirus(CoronaVirus &tmp):Virus(tmp){animalName = tmp.animalName;}
+    CoronaVirus(CoronaVirus &&tmp):Virus(std::move(tmp)){animalName = tmp.animalName;}
     
     CoronaVirus &operator=(CoronaVirus &tmp){
         (*this).Virus::operator=(tmp);
+        animalName = tmp.animalName;
         return *this;
     }
     
     CoronaVirus &operator=(CoronaVirus &&tmp){
         (*this).Virus::operator=(std::move(tmp));
+        animalName = tmp.animalName;
         return *this;
     }
   

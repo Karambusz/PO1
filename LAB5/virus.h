@@ -41,8 +41,7 @@ public:
         delete wskGen;
         virusName = tmp.virusName;
         wskGen = new GeneSeq(tmp.wskGen->get_sequence());
-        wiek = 0;
-        tmp.wiek++;
+        wiek = tmp.wiek;
         
         return *this;
         
