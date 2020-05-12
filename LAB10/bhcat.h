@@ -70,18 +70,12 @@ public:
 
     std::vector<BlackHole> get_custom(std::function<bool(const BlackHole &)> arg){
         std::vector<BlackHole> tmp; 
-        for(int i = 0; i < size; i++){
-            tmp.push_back(catalog[mp[i]]);   
+        for(auto s : catalog){
+            if(arg(s.second)){
+                tmp.push_back(s.second);
+            }
         }
-        std::vector<BlackHole> sorted;
-        auto s = find_if(tmp.begin(), tmp.end(), arg);
-        sorted.push_back(*s);
-        while(s != tmp.end()){
-            s = find_if(std::next(s), tmp.end(), arg);
-            sorted.push_back(*s);
-        }
-        sorted.pop_back();
-        return sorted;
+        return tmp;
     }
     
 };
