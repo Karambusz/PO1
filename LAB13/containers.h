@@ -36,12 +36,14 @@ public:
     void clean(){
         pojemnosc = 0;
     }
-    double operator+=(const WaterContainer &tmp){
-        pojemnosc += tmp.pojemnosc;
-        return pojemnosc;
-    }
+    friend double operator+=(const WaterContainer &tmp1,const WaterContainer &tmp2);
 };
-
+    
+double operator+=(const WaterContainer &tmp1,const WaterContainer &tmp2){
+    double wynik = 0.0;
+    wynik = tmp1.pojemnosc + tmp2.pojemnosc;
+    return wynik;
+}
 
 
 
@@ -81,20 +83,25 @@ public:
     void clean() {
         wal.clear();
     }
-    std::vector<Bill> operator+=(const Wallet &tmp){
-        std::vector<Bill> wynik;
-        std::copy(tmp.wal.begin(), tmp.wal.end(), std::back_inserter(wynik));
-        std::copy(wal.begin(), wal.end(), std::back_inserter(wynik));
-        wal = wynik;
-        return wal;
-    }
+    friend std::vector<Bill> operator+=(const Wallet &tmp1, const Wallet &tmp2); 
 
 };
 
+std::vector<Bill> operator+=(const Wallet &tmp1, const Wallet &tmp2){
+    std::vector<Bill> wynik;
+    std::copy(tmp1.wal.begin(), tmp1.wal.end(), std::back_inserter(wynik));
+    std::copy(tmp2.wal.begin(), tmp2.wal.end(), std::back_inserter(wynik));
+    return wynik;
+}
+
 template<typename T>
 void move_to_container(T &obj1, T &obj2){
-    put(obj1, obj1+=obj2);
-    obj2.clean();
+    try{
+        obj1.put(obj1+=obj2);
+        obj2.clean();
+    }
+	catch (const std::string& info) {
+		std::cout << ">> " << info << std::endl; }
 }
 
 template<int index, typename T>

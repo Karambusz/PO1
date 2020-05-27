@@ -107,6 +107,7 @@ int main() {
 
 	// próba przelania wody z wiadra do butelki
 	move_to_container(bottle,bucket);
+
 	// przelewamy wodę z butelki do wiadra
 	move_to_container(bucket,bottle);
 
